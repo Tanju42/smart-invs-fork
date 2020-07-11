@@ -32,7 +32,21 @@ public class SmartInventory {
         this.manager = manager;
     }
 
-    public Inventory open(Player player) { return open(player, 0); }
+    public Inventory open(Player player) {
+        return open(player, 0);
+    }
+    public Inventory open(Player player, Boolean load) {
+        if ((!id.equals("LOADING")) && load) {
+            LoadingInv.getInv(rows, this.manager).open(player, true);
+        }
+        return open(player, 0);
+    }
+    public Inventory open(Player player, int page, Boolean load) {
+        if ((!id.equals("LOADING")) && load) {
+            LoadingInv.getInv(rows, this.manager).open(player, true);
+        }
+        return open(player, page);
+    }
     public Inventory open(Player player, int page) {
         Optional<SmartInventory> oldInv = this.manager.getInventory(player);
 
